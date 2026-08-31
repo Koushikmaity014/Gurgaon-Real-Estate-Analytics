@@ -114,3 +114,52 @@ flowchart TD
     style G fill:#FFF7ED,stroke:#EA580C,stroke-width:2px,color:#111827
     style H fill:#F3E8FF,stroke:#9333EA,stroke-width:2px,color:#111827
     style I fill:#DCFCE7,stroke:#15803D,stroke-width:3px,color:#111827
+```
+## 📊 Exploratory Data Analysis
+
+A comprehensive exploratory analysis was performed on the engineered Gurgaon real-estate dataset to uncover **distributional patterns, market structure, feature relationships, and potential pricing drivers**.
+
+### 🔹 Automated Data Profiling
+
+- Generated an automated statistical profile of the dataset.
+- Evaluated **data types, missing values, descriptive statistics, distributions, and correlations**.
+- Identified data-quality patterns for further analysis.
+
+### 🔹 Univariate Analysis
+
+- Analyzed **property type, society, sector, furnishing, and other categorical features**.
+- Examined numerical variables including **price, price per sq. ft., and property area**.
+- Investigated **skewness, kurtosis, quantiles, and outliers**.
+- Used **histograms, bar plots, box plots, pie charts, and ECDFs**.
+
+### 🔹 Multivariate Analysis
+
+- Studied relationships between **property characteristics and price**.
+- Compared pricing across **property type, bedrooms, furnishing, age of possession, and sectors**.
+- Analyzed **area vs. price** and **luxury score vs. price**.
+- Performed **correlation analysis** to identify relationships among numerical features.
+- Used **scatter plots, box plots, grouped comparisons, pair plots, and correlation heatmaps**.
+
+### 🔹 Key Insights
+
+- Identified **market composition and category concentration** across property types and societies.
+- Detected **skewed distributions and potential outliers** in pricing and area variables.
+- Examined the influence of **property size, location, configuration, furnishing, and luxury characteristics** on pricing.
+- Established the analytical foundation for subsequent **property-price visualization and insight generation**.
+
+### 📈 EDA Workflow
+
+```mermaid
+flowchart LR
+    A["📊 Engineered Dataset"]
+    --> B["🔎 Automated Profiling"]
+    --> C["📈 Univariate Analysis"]
+    --> D["🔗 Multivariate Analysis"]
+    --> E["💡 Insights & Patterns"]
+
+    style A fill:#EAF2FF,stroke:#2563EB,stroke-width:2px,color:#111827
+    style B fill:#ECFDF5,stroke:#16A34A,stroke-width:2px,color:#111827
+    style C fill:#FEF3C7,stroke:#D97706,stroke-width:2px,color:#111827
+    style D fill:#F3E8FF,stroke:#9333EA,stroke-width:2px,color:#111827
+    style E fill:#DCFCE7,stroke:#15803D,stroke-width:3px,color:#111827:#9333EA,stroke-width:2px,color:#111827
+    style E fill:#DCFCE7,stroke:#15803D,stroke-width:3px,color:#111827
