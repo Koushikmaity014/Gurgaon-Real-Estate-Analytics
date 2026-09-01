@@ -285,3 +285,5 @@ flowchart LR
 ## Feature Selection 
 ## Baseline Model
 ## model Selection
+## analytics page
+## recommender_system
