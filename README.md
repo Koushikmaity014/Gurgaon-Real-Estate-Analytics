@@ -231,3 +231,54 @@ flowchart LR
     style I fill:#FFF7ED,stroke:#EA580C,stroke-width:2px,color:#111827
     style J fill:#DCFCE7,stroke:#15803D,stroke-width:3px,color:#111827
 ```
+## 🧩 Missing Value Imputation
+
+Missing values were analyzed and imputed using **feature relationships, property characteristics, and appropriate statistical techniques** while preserving the underlying structure of the real-estate data.
+
+### 📊 Imputation Workflow
+
+```mermaid
+flowchart LR
+
+    A["📊 Outlier-Treated Dataset"]
+        --> B["🔎 Missing Value Analysis"]
+
+    B --> C["📋 Identify Missing Columns"]
+
+    C --> D["🏢 Property-Level Analysis<br/>Flat vs House"]
+
+    D --> E["🔗 Feature Relationship Analysis"]
+
+    E --> F["📐 Area-Based Imputation<br/>Built-up • Super Built-up • Carpet"]
+
+    F --> G["🏠 Categorical Imputation<br/>Facing • Floor"]
+
+    G --> H["🔄 Validate Imputed Data"]
+
+    H --> I["✅ Complete Dataset"]
+
+    style A fill:#EAF2FF,stroke:#2563EB,stroke-width:2px,color:#111827
+    style B fill:#F3E8FF,stroke:#9333EA,stroke-width:2px,color:#111827
+    style C fill:#FEF3C7,stroke:#D97706,stroke-width:2px,color:#111827
+    style D fill:#ECFDF5,stroke:#16A34A,stroke-width:2px,color:#111827
+    style E fill:#F3E8FF,stroke:#9333EA,stroke-width:2px,color:#111827
+    style F fill:#DBEAFE,stroke:#2563EB,stroke-width:2px,color:#111827
+    style G fill:#DCFCE7,stroke:#15803D,stroke-width:2px,color:#111827
+    style H fill:#FFF7ED,stroke:#EA580C,stroke-width:2px,color:#111827
+    style I fill:#DCFCE7,stroke:#15803D,stroke-width:3px,color:#111827
+```
+
+### 🔹 Key Missing Features
+
+- `society`
+- `floorNum`
+- `facing`
+- `super_built_up_area`
+- `built_up_area`
+- `carpet_area`
+
+### 📈 Validation
+
+- Checked missing-value counts before treatment.
+- Used feature relationships to support area-related imputation.
+- Rechecked the dataset after imputation to ensure consistency.
