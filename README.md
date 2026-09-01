@@ -163,3 +163,71 @@ flowchart LR
     style D fill:#F3E8FF,stroke:#9333EA,stroke-width:2px,color:#111827
     style E fill:#DCFCE7,stroke:#15803D,stroke-width:3px,color:#111827:#9333EA,stroke-width:2px,color:#111827
     style E fill:#DCFCE7,stroke:#15803D,stroke-width:3px,color:#111827
+```
+## 🎯 Outlier Detection & Treatment
+
+Outliers were systematically identified and treated using **distribution analysis, box plots, IQR-based detection, domain-based thresholds, and feature-consistency checks**.
+
+### 🔹 Price & Price per Sq. Ft.
+
+- Examined distributions and box plots to identify extreme values.
+- Used the **IQR method** to detect potential outliers in `price` and `price_per_sqft`.
+- Investigated extreme observations individually to distinguish **genuine high-value properties from data errors**.
+- Corrected inconsistent `area` and recalculated `price_per_sqft` where required.
+- Preserved genuine high-value properties rather than removing them indiscriminately.
+
+### 🔹 Property Area
+
+- Identified unrealistic area values using distribution analysis and domain-based thresholds.
+- Removed clearly invalid observations.
+- Corrected inconsistent area-unit values.
+- Rechecked the distribution after treatment.
+
+### 🔹 Bedroom & Bathroom
+
+- Investigated unusually high bedroom and bathroom counts.
+- Applied domain-based constraints to remove implausible bedroom values.
+- Verified the resulting distributions after treatment.
+
+### 🔹 Area Consistency
+
+- Created an `area-room_ratio` feature:
+
+```text
+Area-to-Room Ratio = Area / Number of Bedrooms
+```
+### 📊 Outlier Treatment Workflow
+
+```mermaid
+flowchart LR
+
+    A["📊 Engineered Dataset<br/>"]
+        --> B["🔎 Outlier Detection"]
+
+    B --> C["📈 Distribution Analysis<br/>Histograms + Box Plots"]
+
+    C --> D["📐 Identify Extreme Values<br/>IQR + Domain Rules"]
+
+    D --> E["🔍 Validate Outliers"]
+
+    E --> F["✏️ Correct Data Errors"]
+    E --> G["🗑️ Remove Invalid Values"]
+
+    F --> H["🔄 Recalculate Features"]
+    G --> H
+
+    H --> I["📊 Post-Treatment Validation"]
+
+    I --> J["✅ Outlier-Treated Dataset"]
+
+    style A fill:#EAF2FF,stroke:#2563EB,stroke-width:2px,color:#111827
+    style B fill:#F3E8FF,stroke:#9333EA,stroke-width:2px,color:#111827
+    style C fill:#FEF3C7,stroke:#D97706,stroke-width:2px,color:#111827
+    style D fill:#FEF3C7,stroke:#D97706,stroke-width:2px,color:#111827
+    style E fill:#F3E8FF,stroke:#9333EA,stroke-width:2px,color:#111827
+    style F fill:#ECFDF5,stroke:#16A34A,stroke-width:2px,color:#111827
+    style G fill:#FEE2E2,stroke:#DC2626,stroke-width:2px,color:#111827
+    style H fill:#EAF2FF,stroke:#2563EB,stroke-width:2px,color:#111827
+    style I fill:#FFF7ED,stroke:#EA580C,stroke-width:2px,color:#111827
+    style J fill:#DCFCE7,stroke:#15803D,stroke-width:3px,color:#111827
+```
