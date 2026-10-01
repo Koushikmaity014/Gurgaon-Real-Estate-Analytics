@@ -1,14 +1,22 @@
-# 🏠 Gurgaon Real Estate Analytics
+<div align="center">
 
-An end-to-end real-estate analytics project built using property listings collected from 99acres. The project covers **data preprocessing, feature engineering, exploratory data analysis, outlier treatment, missing-value imputation, feature selection, machine learning, analytics, and a property recommender system**.
+# 🏙️ Gurgaon Real Estate Analytics
 
-### 🌐 Live Application
+### 🎯 Interactive Real-Estate Analytics, Price Prediction & Property Recommendation
 
-🔗 **[Open the Gurgaon Real Estate Analytics App](http://16.176.178.247:8501/)**
+<p>
+  <a href="http://16.176.178.247:8501/" target="_blank">
+    <img src="https://img.shields.io/badge/🚀%20LIVE%20DEMO-TRY%20THE%20MODEL-00C853?style=for-the-badge&labelColor=555555" alt="Live Demo">
+  </a>
+</p>
 
-The interactive Streamlit application provides **property-price analytics, geographical insights, property comparisons, price prediction, and recommendation functionality**.
+<p>
+  <a href="https://github.com/Koushikmaity014/Gurgaon-Real-Estate-Analytics" target="_blank">
+    <img src="https://img.shields.io/badge/💻%20GITHUB-SOURCE%20CODE-212121?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
+  </a>
+</p>
 
----
+</div>
 
 ## 🛠️ Data Preprocessing
 
