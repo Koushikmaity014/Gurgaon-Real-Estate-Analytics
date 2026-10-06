@@ -1,0 +1,76 @@
+import streamlit as st
+import pickle
+import pandas as pd
+import numpy as np
+import base64
+
+st.set_page_config(page_title="Viz Demo")
+with open("dataset/gurgaon.jpg", "rb") as f:
+    img = base64.b64encode(f.read()).decode()
+st.markdown(f"""
+<style>
+.stApp {{
+    background:
+       linear-gradient(rgba(8,13,20,.65), rgba(8,13,20,.72)),
+        url("data:image/jpeg;base64,{img}");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}}
+</style>
+""", unsafe_allow_html=True)
+
+
+with open('dataset/df.pkl','rb') as file:
+    df = pickle.load(file)
+
+with open('dataset/pipeline.pkl','rb') as file:
+    pipeline = pickle.load(file)
+
+
+st.header('Enter your inputs')
+
+# property_type
+property_type = st.selectbox('Property Type',['flat','house'])
+
+# sector
+sector = st.selectbox('Sector',sorted(df['sector'].unique().tolist()))
+
+bedrooms = float(st.selectbox('Number of Bedroom',sorted(df['bedRoom'].unique().tolist())))
+
+bathroom = float(st.selectbox('Number of Bathrooms',sorted(df['bathroom'].unique().tolist())))
+
+balcony = st.selectbox('Balconies',sorted(df['balcony'].unique().tolist()))
+
+property_age = st.selectbox('Property Age',sorted(df['agePossession'].unique().tolist()))
+
+built_up_area = float(st.number_input('Built Up Area'))
+
+servant_room = int(st.selectbox('Servant Room', options=[0, 1], format_func=lambda x: 'Yes' if x == 1 else 'No'))
+store_room = int(st.selectbox('Store Room', options=[0, 1], format_func=lambda x: 'Yes' if x == 1 else 'No'))
+
+
+furnishing_type = st.selectbox('Furnishing Type',sorted(df['furnishing_type'].unique().tolist()))
+luxury_category = st.selectbox('Luxury Category',sorted(df['luxury_category'].unique().tolist()))
+floor_category = st.selectbox('Floor Category',sorted(df['floor_category'].unique().tolist()))
+
+if st.button('Predict'):
+
+    # form a dataframe
+    data = [[property_type, sector, bedrooms, bathroom, balcony, property_age, built_up_area, servant_room, store_room, furnishing_type, luxury_category, floor_category]]
+    columns = ['property_type', 'sector', 'bedRoom', 'bathroom', 'balcony',
+               'agePossession', 'built_up_area', 'servant room', 'store room',
+               'furnishing_type', 'luxury_category', 'floor_category']
+
+    # Convert to DataFrame
+    one_df = pd.DataFrame(data, columns=columns)
+
+    #st.dataframe(one_df)
+
+    # predict
+    base_price = np.expm1(pipeline.predict(one_df))[0]
+    low = base_price - 0.22
+    high = base_price + 0.22
+
+    # display
+    st.text("The price of the flat is between {} Cr and {} Cr".format(round(low,2),round(high,2)))
