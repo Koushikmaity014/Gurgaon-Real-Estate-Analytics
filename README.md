@@ -305,7 +305,34 @@ flowchart LR
 ## Feature Selection 
 ## Baseline Model
 ## model Selection
-## analytics page
+## 📊 Analytics Dashboard
+
+The **Analytics page** provides an interactive exploration of the Gurgaon real-estate dataset. It combines geographical analysis, price analysis, property-size analysis, BHK analysis, and feature analysis to understand the real-estate market.
+
+### 🎯 Analytics Workflow
+
+```mermaid
+flowchart TD
+    A["🏠 Cleaned Property Dataset"] --> B["Interactive Filtering"]
+
+    B --> C["📍 Geographic Analysis"]
+    B --> D["💰 Price Analysis"]
+    B --> E["🏠 Property Analysis"]
+    B --> F["🔤 Feature Analysis"]
+
+    C --> C1["Sector-wise Price Map"]
+    D --> D1["Area vs Price"]
+    D --> D2["BHK Price Distribution"]
+    D --> D3["House vs Flat Distribution"]
+    E --> E1["BHK Distribution"]
+    F --> F1["Feature Word Cloud"]
+
+    C1 --> G["📊 Interactive Insights"]
+    D1 --> G
+    D2 --> G
+    D3 --> G
+    E1 --> G
+    F1 --> G
 
 ## 🤖 Recommender System
 
