@@ -304,7 +304,45 @@ flowchart LR
 - Rechecked the dataset after imputation to ensure consistency.
 ## Feature Selection 
 ## Baseline Model
-## model Selection
+## 🤖 Model Selection & Optimization
+
+The property price prediction task was treated as a **regression problem**. Multiple machine learning models and encoding strategies were evaluated before selecting the final model.
+
+### 🎯 Model Selection Workflow
+
+```mermaid
+flowchart TD
+    A["🏠 Property Dataset"] --> B["Feature Selection"]
+    B --> C["Log1p Target Transformation"]
+
+    C --> D["Encoding Strategies"]
+
+    D --> E["Ordinal Encoding"]
+    D --> F["One-Hot Encoding"]
+    D --> G["One-Hot + PCA"]
+    D --> H["Target Encoding"]
+    D --> I["Hybrid Encoding"]
+
+    E --> J["Model Comparison"]
+    F --> J
+    G --> J
+    H --> J
+    I --> J
+
+    J --> K["11 Regression Models"]
+    K --> L["Compare R² & MAE"]
+
+    L --> M["Select Best Candidates"]
+    M --> N["Optuna Hyperparameter Tuning"]
+
+    N --> O["Random Forest"]
+    N --> P["XGBoost"]
+
+    O --> Q["Final Model Comparison"]
+    P --> Q
+
+    Q --> R["⭐ Tuned XGBoost"]
+```
 ## 📊 Analytics Dashboard
 
 The **Analytics page** provides an interactive exploration of the Gurgaon real-estate dataset. It combines geographical analysis, price analysis, property-size analysis, BHK analysis, and feature analysis to understand the real-estate market.
