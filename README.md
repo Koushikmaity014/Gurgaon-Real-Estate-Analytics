@@ -346,7 +346,7 @@ The baseline pipeline included:
 - StandardScaler for numerical features
 - `log1p` transformation of the target variable
 - 10-Fold Cross-Validation
-```
+
 ### 📈 Baseline Performance
 
 | Metric | Score |
