@@ -303,7 +303,25 @@ flowchart LR
 - Used feature relationships to support area-related imputation.
 - Rechecked the dataset after imputation to ensure consistency.
 ## Feature Selection 
-## Baseline Model
+
+## 📊 Baseline Model
+
+A **Linear Regression** model was first established as a baseline to provide a reference point for evaluating more advanced machine learning models.
+
+The baseline pipeline included:
+- One-Hot Encoding for categorical features
+- StandardScaler for numerical features
+- `log1p` transformation of the target variable
+- 10-Fold Cross-Validation
+
+### 📈 Baseline Performance
+
+| Metric | Score |
+|---|---:|
+| 10-Fold CV R² | **0.8539 ± 0.0184** |
+| Test MAE | **0.6612 Cr** |
+
+This baseline provided a benchmark against which the performance of nonlinear and ensemble models was evaluated in the subsequent **Model Selection** stage.
 ## 🤖 Model Selection & Optimization
 
 The property price prediction task was treated as a **regression problem**. Multiple machine learning models and encoding strategies were evaluated before selecting the final model.
