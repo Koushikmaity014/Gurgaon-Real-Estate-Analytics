@@ -333,7 +333,7 @@ flowchart TD
     D3 --> G
     E1 --> G
     F1 --> G
-
+```
 ## 🤖 Recommender System
 
 A **content-based property recommendation system** was developed to recommend apartments similar to a selected property. The system combines **facility similarity, property-feature similarity, and location similarity** to generate relevant recommendations.
