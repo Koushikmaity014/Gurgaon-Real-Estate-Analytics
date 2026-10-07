@@ -306,4 +306,55 @@ flowchart LR
 ## Baseline Model
 ## model Selection
 ## analytics page
-## recommender_system
+
+## 🤖 Recommender System
+
+A **content-based property recommendation system** was developed to recommend apartments similar to a selected property. The system combines **facility similarity, property-feature similarity, and location similarity** to generate relevant property recommendations.
+
+### 🎯 Recommendation Workflow
+
+```mermaid
+flowchart TD
+    A["🏠 Gurgaon Property Dataset"] --> B["Feature Engineering"]
+
+    B --> C["🏢 Facility Features"]
+    B --> D["🏠 Property Features"]
+    B --> E["📍 Location Features"]
+
+    C --> F["TF-IDF Vectorization"]
+    D --> G["One-Hot Encoding + Normalization"]
+    E --> H["Distance Matrix + StandardScaler"]
+
+    F --> I["Cosine Similarity"]
+    G --> J["Cosine Similarity"]
+    H --> K["Cosine Similarity"]
+
+    I --> L["Facility Similarity"]
+    J --> M["Property Similarity"]
+    K --> N["Location Similarity"]
+
+    L --> O["Weighted Similarity"]
+    M --> O
+    N --> O
+
+    O --> P["Final Similarity Matrix"]
+
+    P --> Q["📍 Location + Radius Filtering"]
+    Q --> R["🏠 Select Apartment"]
+    R --> S["🔢 Similarity Ranking"]
+    S --> T["⭐ Top-N Recommendations"]
+
+    style A fill:#EAF2FF,stroke:#2563EB,stroke-width:2px,color:#111827
+    style B fill:#F3E8FF,stroke:#9333EA,stroke-width:2px,color:#111827
+    style C fill:#EAF2FF,stroke:#2563EB,stroke-width:2px,color:#111827
+    style D fill:#ECFDF5,stroke:#16A34A,stroke-width:2px,color:#111827
+    style E fill:#FEF3C7,stroke:#D97706,stroke-width:2px,color:#111827
+    style F fill:#DBEAFE,stroke:#2563EB,stroke-width:2px,color:#111827
+    style G fill:#DCFCE7,stroke:#15803D,stroke-width:2px,color:#111827
+    style H fill:#FEF3C7,stroke:#D97706,stroke-width:2px,color:#111827
+    style I fill:#F3E8FF,stroke:#9333EA,stroke-width:2px,color:#111827
+    style J fill:#F3E8FF,stroke:#9333EA,stroke-width:2px,color:#111827
+    style K fill:#F3E8FF,stroke:#9333EA,stroke-width:2px,color:#111827
+    style O fill:#FFF7ED,stroke:#EA580C,stroke-width:2px,color:#111827
+    style P fill:#DCFCE7,stroke:#15803D,stroke-width:3px,color:#111827
+    style T fill:#DCFCE7,stroke:#15803D,stroke-width:3px,color:#111827
