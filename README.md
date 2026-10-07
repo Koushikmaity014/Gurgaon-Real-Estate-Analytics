@@ -302,7 +302,40 @@ flowchart LR
 - Checked missing-value counts before treatment.
 - Used feature relationships to support area-related imputation.
 - Rechecked the dataset after imputation to ensure consistency.
-## Feature Selection 
+
+## 🎯 Feature Selection
+
+Feature selection was performed to identify the most relevant variables for property price prediction and reduce the influence of less useful features.
+
+### 🔍 Feature Importance Techniques
+
+Multiple feature selection and importance techniques were evaluated:
+
+- **Correlation Analysis**
+- **Random Forest Feature Importance**
+- **Gradient Boosting Feature Importance**
+- **Permutation Importance**
+- **LASSO Regression**
+- **Recursive Feature Elimination (RFE)**
+- **Linear Regression Coefficients**
+- **SHAP (SHapley Additive Explanations)**
+
+The importance scores from the different techniques were normalized and combined to obtain a more robust ranking of the features.
+
+### 🧹 Final Feature Reduction
+
+Based on the feature importance analysis and model validation, the following low-impact features were removed:
+
+- `pooja room`
+- `store room`
+- `others`
+
+The reduced feature set was then validated using **5-Fold Cross-Validation** with a Random Forest model before being used for the subsequent baseline modeling and model selection stages.
+
+The resulting dataset was saved as:
+
+```text
+gurgaon_properties_post_feature_selection__1.csv
 
 ## 📊 Baseline Model
 
@@ -313,7 +346,7 @@ The baseline pipeline included:
 - StandardScaler for numerical features
 - `log1p` transformation of the target variable
 - 10-Fold Cross-Validation
-
+```
 ### 📈 Baseline Performance
 
 | Metric | Score |
