@@ -309,21 +309,21 @@ flowchart LR
 
 ## 🤖 Recommender System
 
-A **content-based property recommendation system** was developed to recommend apartments similar to a selected property. The system combines **facility similarity, property-feature similarity, and location similarity** to generate relevant property recommendations.
+A **content-based property recommendation system** was developed to recommend apartments similar to a selected property. The system combines **facility similarity, property-feature similarity, and location similarity** to generate relevant recommendations.
 
 ### 🎯 Recommendation Workflow
 
 ```mermaid
 flowchart TD
-    A["🏠 Gurgaon Property Dataset"] --> B["Feature Engineering"]
+    A["🏠 Property Dataset"] --> B["Feature Engineering"]
 
-    B --> C["🏢 Facility Features"]
+    B --> C["🏢 Facilities"]
     B --> D["🏠 Property Features"]
     B --> E["📍 Location Features"]
 
-    C --> F["TF-IDF Vectorization"]
-    D --> G["One-Hot Encoding + Normalization"]
-    E --> H["Distance Matrix + StandardScaler"]
+    C --> F["TF-IDF"]
+    D --> G["One-Hot Encoding"]
+    E --> H["Distance Features + Scaling"]
 
     F --> I["Cosine Similarity"]
     G --> J["Cosine Similarity"]
@@ -333,170 +333,12 @@ flowchart TD
     J --> M["Property Similarity"]
     K --> N["Location Similarity"]
 
-    L --> O["Weighted Similarity"]
+    L --> O["Weighted Combination"]
     M --> O
     N --> O
 
     O --> P["Final Similarity Matrix"]
-
-    P --> Q["📍 Location + Radius Filtering"]
-    Q --> R["🏠 Select Apartment"]
-    R --> S["🔢 Similarity Ranking"]
+    P --> Q["Location + Radius Filtering"]
+    Q --> R["Select Apartment"]
+    R --> S["Similarity Ranking"]
     S --> T["⭐ Top-N Recommendations"]
-
-    style A fill:#EAF2FF,stroke:#2563EB,stroke-width:2px,color:#111827
-    style B fill:#F3E8FF,stroke:#9333EA,stroke-width:2px,color:#111827
-    style C fill:#EAF2FF,stroke:#2563EB,stroke-width:2px,color:#111827
-    style D fill:#ECFDF5,stroke:#16A34A,stroke-width:2px,color:#111827
-    style E fill:#FEF3C7,stroke:#D97706,stroke-width:2px,color:#111827
-    style F fill:#DBEAFE,stroke:#2563EB,stroke-width:2px,color:#111827
-    style G fill:#DCFCE7,stroke:#15803D,stroke-width:2px,color:#111827
-    style H fill:#FEF3C7,stroke:#D97706,stroke-width:2px,color:#111827
-    style I fill:#F3E8FF,stroke:#9333EA,stroke-width:2px,color:#111827
-    style J fill:#F3E8FF,stroke:#9333EA,stroke-width:2px,color:#111827
-    style K fill:#F3E8FF,stroke:#9333EA,stroke-width:2px,color:#111827
-    style O fill:#FFF7ED,stroke:#EA580C,stroke-width:2px,color:#111827
-    style P fill:#DCFCE7,stroke:#15803D,stroke-width:3px,color:#111827
-    style T fill:#DCFCE7,stroke:#15803D,stroke-width:3px,color:#111827
-### 💡 Recommendation Idea
-
-The recommendation system follows a **content-based recommendation approach**. Instead of using user ratings or purchase history, it uses the information available for each property to identify similar apartments.
-
-Each property is represented using three major aspects:
-
-- 🏢 **Facilities & Amenities**
-- 🏠 **Property Characteristics**
-- 📍 **Location Profile**
-
-The overall idea is:
-
-```text
-                    Selected Property
-                           ↓
-          ┌────────────────┼────────────────┐
-          ↓                ↓                ↓
-      Facilities       Property          Location
-          ↓            Features              ↓
-        TF-IDF       One-Hot Encoding    Distance Matrix
-          ↓                ↓                ↓
-      Similarity        Similarity       Similarity
-          └────────────────┼────────────────┘
-                           ↓
-                 Weighted Combination
-                           ↓
-                  Final Similarity
-                           ↓
-                 Similar Properties
-### 🏢 Facility-Based Similarity
-
-The first component of the recommendation system measures similarity between properties based on their **facilities and amenities**.
-
-The available facility information is converted into a text representation for each property.
-
-Examples of facilities include:
-
-- Swimming Pool
-- Gym
-- Park
-- Club House
-- Security
-- Lift
-- Power Backup
-- Visitor Parking
-
-The facility information is processed using **TF-IDF Vectorization** with unigram and bigram features.
-
-### 📊 Processing Workflow
-
-```text
-Property Facilities
-        ↓
-Text Representation
-        ↓
-TF-IDF Vectorization
-        ↓
-Numerical Feature Vectors
-        ↓
-Cosine Similarity
-        ↓
-Facility Similarity Matrix
-### 🏠 Property Feature Similarity
-
-The second component measures similarity based on the **characteristics of the properties**.
-
-Relevant property features are converted into numerical representations using **One-Hot Encoding** followed by **normalization**.
-
-### 📊 Processing Workflow
-
-```text
-Property Characteristics
-        ↓
-Feature Selection
-        ↓
-One-Hot Encoding
-        ↓
-Normalization
-        ↓
-Numerical Feature Matrix
-        ↓
-Cosine Similarity
-        ↓
-Property Similarity Matrix
-### ⚖️ Combining Similarities & Final Recommendation
-
-The three similarity matrices are combined to create one **final similarity matrix**:
-
-\[
-S =
-0.5S_{facility}
-+
-0.8S_{property}
-+
-1.0S_{location}
-\]
-
-```python
-cosine_sim_matrix = (
-    0.5 * cosine_sim1
-    + 0.8 * cosine_sim2
-    + 1.0 * cosine_sim3
-)
-### ⚖️ Combining Similarities & Final Recommendation
-
-The three similarity matrices are combined to create one **final similarity matrix**:
-
-\[
-S =
-0.5S_{facility}
-+
-0.8S_{property}
-+
-1.0S_{location}
-\]
-
-```python
-cosine_sim_matrix = (
-    0.5 * cosine_sim1
-    + 0.8 * cosine_sim2
-    + 1.0 * cosine_sim3
-)
-The resulting matrix represents the overall similarity between every pair of properties.
-
-> The weights are manually selected heuristic weights and are not learned through model optimization.
-
-### 📍 Location & Radius Filtering
-
-The user first selects a **location** and enters a **search radius**.
-
-Since the location-distance matrix stores distances in metres, the radius entered in kilometres is converted into metres:
-
-\[
-Radius_{metres}=Radius_{km}\times1000
-\]
-
-Properties within the selected radius are then filtered.
-
-```python
-result_ser = location_df[
-    location_df[selected_location] < radius * 1000
-][selected_location].sort_values()
